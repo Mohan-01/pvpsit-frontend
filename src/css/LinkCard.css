@@ -1,0 +1,23 @@
+.link-card {
+    margin: 2%;
+    padding: 2%;
+    border-radius: 20px;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    background-color: #d4f6f6;
+    flex: 1;
+    text-decoration: none;
+    color: black;
+}
+
+.link-card:hover {
+    border: 2px solid black;
+}
+
+.link-card-heading {
+    min-height: 20vh;
+}
+
+.link-card img {
+    width: 80%;
+    filter: drop-shadow(2px 2px 5px #000000);
+}

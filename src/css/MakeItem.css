@@ -1,0 +1,83 @@
+.make-item {
+    display: grid;
+    grid-template-columns: 40% 40%;
+    width: 100%;
+    max-height: 48vh;
+    justify-content: center;
+    margin: 1%;
+    padding: 1%;
+}
+
+.make-item > * {
+    max-height: 30vh;
+    margin-right: 1%;
+    border-radius: 10px;
+}
+
+.make-item .item-image  img {
+    height: 30vh;
+}
+
+table {
+    /* width: 46%; */
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+    padding: 2%;
+}
+
+table td {
+    text-align: left;
+    justify-content: center;
+}
+
+table tbody tr td:first-child{
+    width: 12rem;
+}
+
+.apply-link{
+    text-align: center;
+}
+
+.apply-link a {
+    padding: 1%;
+    /* background-color: rgb(144, 144, 195); */
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.apply-link a:hover {
+    color: rgb(255, 255, 255);
+    background-color: blue;
+    border-radius: 10px;
+}
+
+.card-update-delete{
+    text-align: center;
+    padding: 1%;
+}
+
+.card-update-delete > td {
+    flex: 1;
+    /* border: 2px solid red; */
+}
+
+.card-update-delete > td > button {
+    padding: 1%;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    /* background-color: rgb(174, 176, 177); */
+    border: 0
+}
+
+.make-item .delete {
+    color: red;
+}
+
+@media screen and (max-width: 700px) {
+    .make-item {
+        display: flex;
+        flex-wrap: wrap;
+    }
+}

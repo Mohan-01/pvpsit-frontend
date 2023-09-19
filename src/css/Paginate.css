@@ -1,0 +1,34 @@
+.paginate {
+    display: grid;
+    grid-template-columns: 5% 90% 5%;
+}
+
+.paginate > * {
+    flex: auto;
+    background-color: transparent;
+}
+
+.paginate .prev, 
+.paginate .next {
+    cursor: pointer;
+    font-size: 18px;
+    border: none;
+    color: #0095ff;
+}
+
+.paginate .prev:hover,
+.paginate .next:hover {
+    color: white;
+}
+
+.paginate .page-numbers {
+    display: flex;
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: .4%;
+    margin: auto;
+}
+
+.page-numbers .page-number {
+    flex: auto;
+}

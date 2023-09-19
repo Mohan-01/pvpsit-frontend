@@ -1,0 +1,19 @@
+.items {
+    height: 120vh;
+    overflow-x: hidden;
+    overflow-y: scroll;;
+}
+
+.items h1 {
+    text-align: center;
+}
+
+.items .notify {
+    display: flex;
+    flex-direction: column;
+}
+
+.items .go-back {
+    position: absolute;
+    left: 2vw;
+}

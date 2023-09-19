@@ -1,0 +1,52 @@
+table {
+    text-align: left;
+    padding-bottom: 2%;
+    margin: 1%;
+    box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.464);
+    border-radius: 10px;
+    /* background-color: rgb(174, 176, 177); */
+}
+
+table td {
+    padding: 1%;
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.apply-link{
+    text-align: center;
+}
+
+.apply-link a {
+    padding: 1%;
+    /* background-color: rgb(144, 144, 195); */
+    border: 1px solid black;
+    text-decoration: none;
+    color: black;
+    font-weight: 600;
+}
+
+.apply-link a:hover {
+    color: white;
+    /* background-color: blue; */
+    border-radius: 10px;
+}
+
+.card-update-delete{
+    text-align: center;
+    padding: 1%;
+}
+
+.card-update-delete > td {
+    flex: 1;
+    /* border: 2px solid red; */
+}
+
+.card-update-delete > td > button {
+    padding: 1%;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    /* background-color: rgb(174, 176, 177); */
+    border: 0
+}
