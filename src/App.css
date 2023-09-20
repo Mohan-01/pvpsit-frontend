@@ -43,7 +43,6 @@ button:hover {
   background-color: rgba(95, 148, 240, 0.505);
   border-radius: 1rem;
   /* border: .1rem solid transparent; */
-  background-clip: content-box;
 }
 
 form {
@@ -69,6 +68,14 @@ form input {
 
 .close-btn:hover {
   background-color: red;
+}
+
+@media screen and (max-width: 720px) {
+  form {
+    width: 90%;
+    padding: 1%;
+    margin: 1%;
+  }
 }
 
 /* input[type='search'] {
