@@ -5,7 +5,7 @@ function LoginForm(props) {
     
     return (
         <form onSubmit={e => handleLogin(e, props)}>
-        <button type='button' onClick={() => props.navigate(-1)}>close</button>
+        <button type='button' className='close-btn' onClick={() => props.navigate(-1)}>close</button>
             <label htmlFor="userName">User Name: </label>
             <input type="text" name="userName" id="userName" />
             <label htmlFor="password">Password: </label>

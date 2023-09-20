@@ -25,6 +25,10 @@ form button[type="submit"] {
     font-size: 18px;
     font-weight: 600;
     margin-top: 4%;
+    width: 50%;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    background-color: rgb(100, 100, 255);
+    cursor: pointer;
 }
 form button[type="button"] {
     position: absolute;
@@ -35,3 +39,19 @@ form button[type="button"] {
 /* form button[type="button"]:hover {
     background-color: red;
 } */
+
+@media screen and (max-width: 720px) {
+    form {
+      width: 90%;
+      left: 4%;
+    }
+
+    form input, form select {
+        min-height: 32px;
+    }
+    form button[type="button"] {
+        right: -1%;
+        top: -3%;
+        padding: 1%;
+    }
+  }

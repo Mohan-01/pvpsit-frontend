@@ -70,14 +70,6 @@ form input {
   background-color: red;
 }
 
-@media screen and (max-width: 720px) {
-  form {
-    width: 90%;
-    padding: 1%;
-    margin: 1%;
-  }
-}
-
 /* input[type='search'] {
   position: absolute;
   padding: .5%;
