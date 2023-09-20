@@ -38,8 +38,8 @@ export async function handleLogin (e, props) {
     const {status} = data;
     if(props.user.role === 'admin' || props.user.role === 'staff') props.setAuthorized(true);
     if(status === 'success') {
-        props.navigate(-1);
-        props.setLoggedIn(true);
+      props.setLoggedIn(true);
+      props.navigate(-1);
     }
 }
 
