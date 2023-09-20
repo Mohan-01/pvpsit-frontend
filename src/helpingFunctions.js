@@ -54,7 +54,8 @@ export function handleLogout(setLoggedIn, setAuthorized) {
       }
       setLoggedIn(false);
       setAuthorized(false);
-    })
+      window.location.reload();
+    }).catch(err => console.log(err));
 }
 
 export async function createNotify(e, coverImg, props) {
