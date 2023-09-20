@@ -9,7 +9,8 @@ const Items = (props) => {
     const [data, setData] = useState([]);
     const [showData, setShowData] = useState([]);
     const [page, setPage] = useState(1);
-    const url = `http://localhost:4000${props.route}/?page=${page}`;
+    const url = `https://pvpsit-backend.onrender.com${props.route}/?page=${page}`;
+    // const url = `http://localhost:4000${props.route}/?page=${page}`;
     useEffect(() => {
         // props.setLoader(true);
         axios.get(url, {

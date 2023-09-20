@@ -5,7 +5,8 @@ export async function handleRegister(e, props) {
     const formData = new FormData(e.target);
     const body = Object.fromEntries(formData.entries());
     props.setLoader(true);
-    const data = await axios.post('http://localhost:4000/users/signup', {...body}, {
+    // const data = await axios.post('http://localhost:4000/users/signup', {...body}, {
+    const data = await axios.post('https://pvpsit-backend.onrender.com/users/signup', {...body}, {
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
@@ -26,7 +27,8 @@ export async function handleLogin (e, props) {
     const formData = new FormData(e.target);
     const body = Object.fromEntries(formData.entries());
     props.setLoader(true);
-    const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
+    // const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
+    const data = (await axios.post('https://pvpsit-backend.onrender.com/users/login', {...body}, {
         headers: {'Content-Type': 'application/json'},
         withCredentials: true,
     })).data;
@@ -42,7 +44,8 @@ export async function handleLogin (e, props) {
 }
 
 export function handleLogout(setLoggedIn, setAuthorized) {
-    axios.get('http://localhost:4000/users/logout', {
+    // axios.get('http://localhost:4000/users/logout', {
+    axios.get('https://pvpsit-backend.onrender.com/users/logout', {
         headers: {'Content-Type': 'application/json'},
         withCredentials: true,
     }).then(data => {
@@ -61,7 +64,8 @@ export async function createNotify(e, coverImg, props) {
     console.log({formData})
     console.log({body})
     props.setLoader(true);
-    const data = await axios.post(`http://localhost:4000/${props.heading.toLowerCase()}`, {...body, coverImg}, {
+    // const data = await axios.post(`http://localhost:4000/${props.heading.toLowerCase()}`, {...body, coverImg}, {
+    const data = await axios.post(`https://pvpsit-backend.onrender.com/${props.heading.toLowerCase()}`, {...body, coverImg}, {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
@@ -108,7 +112,8 @@ export async function handleDeleteAll(e, navigate) {
     e.preventDefault();
     const ok = window.confirm(`Are you sure you want to delete all ${e.target.name.value}`)
     if(!ok) return navigate(-1);
-    const url = `http://localhost:4000/${e.target.name.value}/delete-all`
+    // const url = `http://localhost:4000/${e.target.name.value}/delete-all`
+    const url = `https://pvpsit-backend.onrender.com/${e.target.name.value}/delete-all`
     const res = await axios.delete(url, {
       headers: {
         'Accept': 'application/json',

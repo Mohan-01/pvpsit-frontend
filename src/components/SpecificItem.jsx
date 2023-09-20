@@ -7,7 +7,8 @@ import AddNotify from './AddNotify';
 import { handleDelete } from '../helpingFunctions';
 
 const SpecificItem = (props) => {
-    const url = `http://localhost:4000${props.route}`;
+    const url = `https://pvpsit-backend.onrender.com${props.route}`;
+    // const url = `http://localhost:4000${props.route}`;
     const [data, setData] = useState(null);
     const {id} = useParams();
     const {navigate} = props;

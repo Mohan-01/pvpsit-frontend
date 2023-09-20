@@ -12,12 +12,17 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(false);
   const [loader, setLoader] = useState(false);
   const [user, setUser] = useState({});
-  const url = `http://localhost:4000/users/login-status`;
+  const url = `https://pvpsit-backend.onrender.com/users/login-status`;
+  // const url = `http://localhost:4000/users/login-status`;
 
   useEffect(() => {
     // setLoader(true);
     axios.get(url, {
-      headers: {'Content-Type': 'application/json'},
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*'
+      },
       withCredentials: true,
     }).then(data => {
       if(data.status !== 200) return ;
