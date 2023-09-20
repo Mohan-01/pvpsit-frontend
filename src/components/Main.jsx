@@ -29,9 +29,9 @@ function Main(props) {
         props.loader
         ? <Loader message={'Error loading'} />
         : <Routes>
-        <Route path='*' element={<Home {...props} />} />
-        <Route path='/profile' element={<Profile user={props.user}/>} />
-          {
+            <Route path='*' element={<Home {...props} />} />
+            <Route path='/profile' element={<Profile user={props.user}/>} />
+              {
                 // Creating all main routes
                 props.routes.map(item =>
                   <Route key={item.route} path={`${item.route}/*`}>
@@ -47,7 +47,8 @@ function Main(props) {
                   </Route>
                   </Route>
                   </Route>
-                  )}
+                  )
+                }
               <Route path='*' Component={ErrorPage}/>
             </Routes>
           }
