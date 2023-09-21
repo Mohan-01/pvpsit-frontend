@@ -43,10 +43,10 @@ export async function handleLogin (e, props) {
     const {status} = data;
     if(props.user.role === 'admin' || props.user.role === 'staff') props.setAuthorized(true);
     if(status === 'success') {
-      props.setLoggedIn(true);
+      window.location.reload();
       props.navigate(-1);
+      props.setLoggedIn(true);
     }
-    window.location.reload();
 }
 
 export function handleLogout(setLoggedIn, setAuthorized) {
@@ -60,10 +60,10 @@ export function handleLogout(setLoggedIn, setAuthorized) {
         withCredentials: true,
     }).then(data => {
         if(data.status !== 200) return ;
-      setLoggedIn(false);
-      setAuthorized(false);
+        setLoggedIn(false);
+        setAuthorized(false);
     }).catch(err => console.log(err));
-    window.location.reload();
+    // window.location.reload();
 }
 
 export async function createNotify(e, coverImg, props) {
