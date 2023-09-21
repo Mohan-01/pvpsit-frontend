@@ -140,6 +140,7 @@ export async function handleDeleteAll(e, navigate) {
     if(!ok) return navigate(-1);
     // const url = `http://localhost:4000/${e.target.name.value}/delete-all`
     const url = `https://pvpsit-backend.onrender.com/${e.target.name.value}/delete-all`
+    console.log(url);
     const res = await axios.delete(url, {
       headers: {
         'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
