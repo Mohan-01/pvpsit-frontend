@@ -120,6 +120,7 @@ export async function createNotify(e, coverImg, props) {
 export async function handleDelete(url, id, setItem) {
   const ok = window.confirm('Are you sure you want to delete this item?');
   if(!ok) return ;
+  console.log({url, id});
   const data = await axios.delete(`${url}/${id}`, {
       headers: {
         'Accept': 'application/json',
@@ -144,7 +145,7 @@ export async function handleDeleteAll(e, navigate) {
     const url = `https://pvpsit-backend.onrender.com/${e.target.name.value}/delete-all`
     const res = await axios.delete(url, {
       headers: {
-        'Accept': 'application/json',
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
