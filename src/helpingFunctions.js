@@ -99,7 +99,7 @@ export async function createNotify(e, coverImg, props) {
     });
     const body = Object.fromEntries(formData.entries());
     if(!body?.coverImg?.size) delete body['coverImg']
-    body.coverImg = props.coverImg;
+    else body.coverImg = props.coverImg;
     console.log('edit: ', body)
     const data = await axios.patch(url, {...body},{
       headers: {
@@ -117,6 +117,25 @@ export async function createNotify(e, coverImg, props) {
     }
   }
 
+export async function handleDelete(url, id, setItem) {
+  const ok = window.confirm('Are you sure you want to delete this item?');
+  if(!ok) return ;
+  const data = await axios.delete(`${url}/${id}`, {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
+        'Access-Control-Allow-Methods': 'POST, GET, PATCH, DELETE'
+      },
+      withCredentials: true,
+  })
+  if  (data.status === 204) {
+      setItem(null);
+  } else {
+      console.log(data.data);
+  }
+}
+
 export async function handleDeleteAll(e, navigate) {
     e.preventDefault();
     const ok = window.confirm(`Are you sure you want to delete all ${e.target.name.value}`)
@@ -133,22 +152,4 @@ export async function handleDeleteAll(e, navigate) {
     })
     if(res.status === 204) navigate(-1);
     else console.log('error delete all');
-}
-
-export async function handleDelete(url, id, setItem) {
-    const ok = window.confirm('Are you sure you want to delete this item?');
-    if(!ok) return ;
-    const data = await axios.delete(`${url}/${id}`, {
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
-        },
-        withCredentials: true,
-    })
-    if  (data.status === 204) {
-        setItem(null);
-    } else {
-        console.log(data.data);
-    }
 }

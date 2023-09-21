@@ -17,7 +17,7 @@ const MakeItem = ({data, authorized, route}) => {
             ?
                 <div className='make-item'>
                     <div className='item-image'>
-                    <img src={item.coverImg? item.coverImg: `/img${route}.png`} alt="item-img" />
+                    <img src={item.coverImg || item.coverImg === route? item.coverImg: `/img${route}.png`} alt="item-img" />
                     </div>
                     <table>
                         <tbody>
