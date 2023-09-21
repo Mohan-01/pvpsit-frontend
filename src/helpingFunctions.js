@@ -10,7 +10,7 @@ export async function handleRegister(e, props) {
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+          'Access-Control-Allow-Origin': '*'
       },
       withCredentials: true,
     })
@@ -70,7 +70,7 @@ export async function createNotify(e, coverImg, props) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        'Access-Control-Allow-Origin': '*'
       },
       withCredentials: true
     })
@@ -97,7 +97,7 @@ export async function createNotify(e, coverImg, props) {
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+          'Access-Control-Allow-Origin': '*'
       },
       withCredentials: true,
   })
@@ -119,7 +119,7 @@ export async function handleDeleteAll(e, navigate) {
       headers: {
         'Accept': 'application/json',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        'Access-Control-Allow-Origin': '*'
       },
       withCredentials: true
     })
@@ -134,7 +134,7 @@ export async function handleDelete(url, id, setItem) {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+            'Access-Control-Allow-Origin': '*'
         },
         withCredentials: true,
     })
