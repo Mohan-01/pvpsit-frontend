@@ -21,9 +21,9 @@ const RegisterForm = (props) => {
         <label htmlFor="mail">Email: </label>
         <input type="email" name="mail" id="mail" />
         <label htmlFor="password">Password: </label>
-        <input type="password" name='password' id='password' required/>
+        <input type="password" name='password' id='password' minLength={8} required/>
         <label htmlFor="passwordConfirm">Confirm Password: </label>
-        <input type="password" name='passwordConfirm' id='passwordConfirm' required/>
+        <input type="password" name='passwordConfirm' id='passwordConfirm' minLength={8} required/>
         <button type="submit">Submit</button>
     </form>
   )

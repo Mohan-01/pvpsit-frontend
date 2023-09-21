@@ -19,6 +19,7 @@ export async function handleRegister(e, props) {
       alert('signup success')
       props.navigate(-1);
     } else console.log(data.data);
+    window.location.reload();
 }
 
 export async function handleLogin (e, props) {
@@ -45,6 +46,7 @@ export async function handleLogin (e, props) {
       props.setLoggedIn(true);
       props.navigate(-1);
     }
+    window.location.reload();
 }
 
 export function handleLogout(setLoggedIn, setAuthorized) {
@@ -57,13 +59,11 @@ export function handleLogout(setLoggedIn, setAuthorized) {
         },
         withCredentials: true,
     }).then(data => {
-        if(data.status !== 200) {
-        return ;
-      }
+        if(data.status !== 200) return ;
       setLoggedIn(false);
       setAuthorized(false);
-      window.location.reload();
     }).catch(err => console.log(err));
+    window.location.reload();
 }
 
 export async function createNotify(e, coverImg, props) {
@@ -111,10 +111,10 @@ export async function createNotify(e, coverImg, props) {
   })
     if(data.status === 200) {
         props.navigate(`/${props.heading.toLowerCase()}`);
-        window.location.reload();
-    } else {
+      } else {
         console.log(data.data);
-    }
+      }
+      window.location.reload();
   }
 
 export async function handleDelete(url, id, setItem) {
@@ -132,6 +132,7 @@ export async function handleDelete(url, id, setItem) {
   } else {
       console.log(data);
   }
+  window.location.reload();
 }
 
 export async function handleDeleteAll(e, navigate) {
