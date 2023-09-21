@@ -123,8 +123,6 @@ export async function handleDelete(url, id, setItem) {
   console.log({url, id});
   const data = await axios.delete(`${url}/${id}`, {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
         'Access-Control-Allow-Methods': 'POST, GET, PATCH, DELETE'
       },
