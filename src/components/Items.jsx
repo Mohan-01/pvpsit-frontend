@@ -17,7 +17,7 @@ const Items = (props) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
             },
             withCredentials: true,
         })
