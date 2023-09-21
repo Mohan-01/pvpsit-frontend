@@ -10,6 +10,7 @@ const Items = (props) => {
     const [showData, setShowData] = useState([]);
     const [page, setPage] = useState(1);
     const url = `https://pvpsit-backend.onrender.com${props.route}`;
+    // const url = `http://localhost:4000${props.route}`;
     // const url = `http://localhost:4000${props.route}/?page=${page}`;
     useEffect(() => {
         // props.setLoader(true);
@@ -17,7 +18,7 @@ const Items = (props) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*'
+                'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
                 // 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PATCH, DELETE',
                 // 'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With X-Auth-Token Authentication'
             },
