@@ -129,9 +129,8 @@ export async function handleDelete(url, id, setItem) {
       },
       withCredentials: true,
   })
-  if  (data.status === 200) {
+  if  (data.status === 204) {
       setItem(null);
-      window.location.reload();
   } else {
       console.log(data);
   }
