@@ -6,7 +6,8 @@ import { handleDelete } from '../helpingFunctions';
 import '../css/MakeItem.css';
 
 const MakeItem = ({data, authorized, route}) => {
-    const url = `http://localhost:4000${route}`;
+    // const url = `http://localhost:4000${route}`;
+    const url = `https://pvpsit.onrender.com${route}`;
     const [item, setItem] = useState(data);
     const date = String(item?.lastDateToApply).split('T')[0];
 
