@@ -124,7 +124,6 @@ export async function handleDelete(url, id, setItem) {
   const data = await axios.delete(`${url}/${id}`, {
       headers: {
         'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
-        'Access-Control-Allow-Methods': 'POST, GET, PATCH, DELETE'
       },
       withCredentials: true,
   })
@@ -143,9 +142,7 @@ export async function handleDeleteAll(e, navigate) {
     const url = `https://pvpsit-backend.onrender.com/${e.target.name.value}/delete-all`
     const res = await axios.delete(url, {
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
       },
       withCredentials: true
     })
