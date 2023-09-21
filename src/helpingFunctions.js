@@ -10,7 +10,7 @@ export async function handleRegister(e, props) {
       headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
       withCredentials: true,
     })
@@ -22,16 +22,20 @@ export async function handleRegister(e, props) {
 }
 
 export async function handleLogin (e, props) {
-    e.preventDefault();
-    console.log('handleLogin')
-    const formData = new FormData(e.target);
-    const body = Object.fromEntries(formData.entries());
-    props.setLoader(true);
-    // const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
+  e.preventDefault();
+  console.log('handleLogin')
+  const formData = new FormData(e.target);
+  const body = Object.fromEntries(formData.entries());
+  props.setLoader(true);
+  // const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
     const data = (await axios.post('https://pvpsit-backend.onrender.com/users/login', {...body}, {
-        headers: {'Content-Type': 'application/json'},
+      headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        },
         withCredentials: true,
-    })).data;
+      })).data;
     props.setLoader(false);
     props.setUser(data.data)
     console.log(props.user);
@@ -46,7 +50,11 @@ export async function handleLogin (e, props) {
 export function handleLogout(setLoggedIn, setAuthorized) {
     // axios.get('http://localhost:4000/users/logout', {
     axios.get('https://pvpsit-backend.onrender.com/users/logout', {
-        headers: {'Content-Type': 'application/json'},
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        },
         withCredentials: true,
     }).then(data => {
         if(data.status !== 200) {
@@ -68,9 +76,9 @@ export async function createNotify(e, coverImg, props) {
     // const data = await axios.post(`http://localhost:4000/${props.heading.toLowerCase()}`, {...body, coverImg}, {
     const data = await axios.post(`https://pvpsit-backend.onrender.com/${props.heading.toLowerCase()}`, {...body, coverImg}, {
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
       withCredentials: true
     })
@@ -95,9 +103,9 @@ export async function createNotify(e, coverImg, props) {
     console.log('edit: ', body)
     const data = await axios.patch(url, {...body},{
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': '*'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
       withCredentials: true,
   })
@@ -118,8 +126,8 @@ export async function handleDeleteAll(e, navigate) {
     const res = await axios.delete(url, {
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
       withCredentials: true
     })
@@ -132,9 +140,9 @@ export async function handleDelete(url, id, setItem) {
     if(!ok) return ;
     const data = await axios.delete(`${url}/${id}`, {
         headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json',
-            'Access-Control-Allow-Origin': '*'
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
         },
         withCredentials: true,
     })
