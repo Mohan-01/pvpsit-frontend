@@ -134,7 +134,7 @@ export async function handleDelete(url, id, setItem) {
       setItem(null);
       window.location.reload();
   } else {
-      console.log(data.data);
+      console.log(data);
   }
 }
 
