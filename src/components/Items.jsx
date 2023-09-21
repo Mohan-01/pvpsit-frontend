@@ -17,9 +17,9 @@ const Items = (props) => {
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PATCH, DELETE',
-                'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With X-Auth-Token Authentication'
+                'Access-Control-Allow-Origin': '*'
+                // 'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PATCH, DELETE',
+                // 'Access-Control-Allow-Headers': 'Content-Type, Origin, X-Requested-With X-Auth-Token Authentication'
             },
             withCredentials: true,
         })
