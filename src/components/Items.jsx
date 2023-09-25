@@ -44,21 +44,21 @@ const Items = (props) => {
 
   return (
     <React.Fragment>
+    <div className='heading-search'>
+        <Search handleSearch={handleSearch} />
+        <h1 className='main-heading'>{props.heading}</h1>
+    </div>
     <div className='items'>
-        <div className='heading-search'>
-            <Search handleSearch={handleSearch} />
-            <h1 className='main-heading'>{props.heading}</h1>
-        </div>
         {/*<Paginate page={page} setPage={setPage} {...props} />*/}
         <div className='all-notify'>
-        {
-            showData.length
-            ? showData.map(el =><MakeItem key={el._id} data={el} {...props} url={url}/>)
-            : <p>There are no {props.heading} available!</p>
-        }
+            {
+                showData.length
+                ? showData.map(el =><MakeItem key={el._id} data={el} {...props} url={url}/>)
+                : <p>There are no {props.heading} available!</p>
+            }
         </div>
-        <Paginate page={page} setPage={setPage} {...props} />
     </div>
+    <Paginate page={page} setPage={setPage} {...props} />
     </React.Fragment>
   )
 }

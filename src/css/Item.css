@@ -1,10 +1,16 @@
 .items {
-    height: 120vh;
+    display: flex;
     overflow-x: hidden;
-    overflow-y: scroll;;
+    overflow-y: scroll;
+    width: 100%;
+    flex-direction: column;
 }
 
-.items h1 {
+.items div {
+    margin-bottom: 4em;
+}
+
+.main-heading {
     text-align: center;
 }
 

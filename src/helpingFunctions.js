@@ -1,6 +1,7 @@
 import axios from "axios";
 
 export async function handleRegister(e, props) {
+  try {
     e.preventDefault();
     const formData = new FormData(e.target);
     const body = Object.fromEntries(formData.entries());
@@ -20,53 +21,59 @@ export async function handleRegister(e, props) {
       props.navigate(-1);
     } else console.log(data.data);
     window.location.reload();
+  } catch (e) {console.log(e)}
 }
 
 export async function handleLogin (e, props) {
-  e.preventDefault();
-  console.log('handleLogin')
-  const formData = new FormData(e.target);
-  const body = Object.fromEntries(formData.entries());
-  props.setLoader(true);
-  // const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
-    const data = (await axios.post('https://pvpsit-backend.onrender.com/users/login', {...body}, {
-      headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
-        },
-        withCredentials: true,
-      })).data;
-    props.setLoader(false);
-    props.setUser(data.data)
-    console.log(props.user);
-    const {status} = data;
-    if(props.user.role === 'admin' || props.user.role === 'staff') props.setAuthorized(true);
-    if(status === 'success') {
-      window.location.reload();
-      props.navigate(-1);
-      props.setLoggedIn(true);
-    }
-}
-
-export function handleLogout(setLoggedIn, setAuthorized) {
-    // axios.get('http://localhost:4000/users/logout', {
-    axios.get('https://pvpsit-backend.onrender.com/users/logout', {
+  try {
+    e.preventDefault();
+    console.log('handleLogin')
+    const formData = new FormData(e.target);
+    const body = Object.fromEntries(formData.entries());
+    props.setLoader(true);
+    // const data = (await axios.post('http://localhost:4000/users/login', {...body}, {
+      const data = (await axios.post('https://pvpsit-backend.onrender.com/users/login', {...body}, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
           'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
         },
         withCredentials: true,
+      })).data;
+      props.setLoader(false);
+      props.setUser(data.data)
+      console.log(props.user);
+      const {status} = data;
+      if(props.user.role === 'admin' || props.user.role === 'staff') props.setAuthorized(true);
+      if(status === 'success') {
+        window.location.reload();
+        props.navigate(-1);
+        props.setLoggedIn(true);
+      }
+    } catch (e) {console.log(e)}
+}
+
+export function handleLogout(setLoggedIn, setAuthorized) {
+  try {
+  // axios.get('http://localhost:4000/users/logout', {
+    axios.get('https://pvpsit-backend.onrender.com/users/logout', {
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+      },
+      withCredentials: true,
     }).then(data => {
-        if(data.status !== 200) return ;
-        setLoggedIn(false);
-        setAuthorized(false);
+      if(data.status !== 200) return ;
+      setLoggedIn(false);
+      setAuthorized(false);
     }).catch(err => console.log(err));
     // window.location.reload();
+  } catch (e) {console.log(e)}
 }
 
 export async function createNotify(e, coverImg, props) {
+  try {
     e.preventDefault();
     const formData = new FormData(e.target);
     const body = Object.fromEntries(formData.entries());
@@ -74,11 +81,11 @@ export async function createNotify(e, coverImg, props) {
     console.log({body})
     props.setLoader(true);
     // const data = await axios.post(`http://localhost:4000/${props.heading.toLowerCase()}`, {...body, coverImg}, {
-    const data = await axios.post(`https://pvpsit-backend.onrender.com/${props.heading.toLowerCase()}`, {...body, coverImg}, {
+      const data = await axios.post(`https://pvpsit-backend.onrender.com/${props.heading.toLowerCase()}`, {...body, coverImg}, {
       headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-          'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
       },
       withCredentials: true
     })
@@ -88,9 +95,11 @@ export async function createNotify(e, coverImg, props) {
     } else {
       console.log(data);
     }
-  }
+  } catch (e) {console.log(e)}
+}
 
-  export async function handleEdit(e, url, props) {
+export async function handleEdit(e, url, props) {
+  try {
     e.preventDefault();
     console.log('edit');
     const formData = new FormData(e.target);
@@ -104,24 +113,26 @@ export async function createNotify(e, coverImg, props) {
     const data = await axios.patch(url, {...body},{
       headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
-      },
-      withCredentials: true,
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com'
+    },
+    withCredentials: true,
   })
-    if(data.status === 200) {
-        props.navigate(`/${props.heading.toLowerCase()}`);
-      } else {
-        console.log(data.data);
-      }
-      window.location.reload();
+  if(data.status === 200) {
+    props.navigate(`/${props.heading.toLowerCase()}`);
+  } else {
+    console.log(data.data);
   }
+  window.location.reload();
+  } catch (e) {console.log(e)}
+}
 
 export async function handleDelete(url, id, setItem) {
-  const ok = window.confirm('Are you sure you want to delete this item?');
-  if(!ok) return ;
-  console.log({url, id});
-  const data = await axios.delete(`${url}/${id}`, {
+  try {
+    const ok = window.confirm('Are you sure you want to delete this item?');
+    if(!ok) return ;
+    console.log({url, id});
+    const data = await axios.delete(`${url}/${id}`, {
       headers: {
         'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
       },
@@ -130,12 +141,14 @@ export async function handleDelete(url, id, setItem) {
   if  (data.status === 204) {
       setItem(null);
   } else {
-      console.log(data);
+    console.log(data);
   }
   window.location.reload();
+  } catch (e) {console.log(e)}
 }
 
 export async function handleDeleteAll(e, navigate) {
+  try {
     e.preventDefault();
     const ok = window.confirm(`Are you sure you want to delete all ${e.target.name.value}`)
     if(!ok) return navigate(-1);
@@ -150,4 +163,5 @@ export async function handleDeleteAll(e, navigate) {
     })
     if(res.status === 204) navigate(-1);
     else console.log('error delete all');
+  } catch (e) {console.log(e)}
 }
