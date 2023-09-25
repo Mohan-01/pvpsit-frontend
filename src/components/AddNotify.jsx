@@ -23,7 +23,7 @@ const AddNotify = ({notShow, ...props}) => {
 
   const handleFileUpload = async e => {
     const base64Image = await convertToBase64(e.target.files[0]);
-    console.log(typeof base64Image, base64Image);
+    // console.log(typeof base64Image, base64Image);
     setCoverImg(base64Image);
   }
 

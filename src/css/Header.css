@@ -4,4 +4,9 @@ header {
     justify-content: center;
     vertical-align: middle;
     background-color: #5800FF;
+    overflow: scroll;
+}
+
+::-webkit-scrollbar {
+    display: none;
 }
