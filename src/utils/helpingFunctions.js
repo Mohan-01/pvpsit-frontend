@@ -85,7 +85,10 @@ export async function getUser(id) {
       withCredentials: true
     });
     return res.data;
-  } catch (e) {console.log(e)};
+  } catch (e) {
+    console.log(e);
+    console.clear();
+  };
 }
 
 /*
