@@ -89,7 +89,15 @@ export async function getUser(id) {
 
 export async function getNotifications(route) {
   try {
-    const res = await axios.get(route);
+    const res = await axios.get(route, 
+    //   {
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //     'Accept': 'application/json',
+    //     'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
+    //   }
+    // }
+    );
     return res.data;
   } catch(e) {console.log(e)};
 }
