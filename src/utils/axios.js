@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // const baseURL = 'http://localhost:4000';
-const baseURL = 'https://pvpsit-backend.onrender.com';
+const baseURL = 'https://pvpsit-notify-backend.onrender.com';
 
 
 export default axios.create({
