@@ -28,7 +28,7 @@ function App() {
         });
         setUser(user);
         setLoggedIn(true);
-        console.log(user);
+
         const {role} = user;
         if(role === 'admin' || role ==='staff') setAuthorized(true);
       }
