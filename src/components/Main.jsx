@@ -21,19 +21,18 @@ import '../css/Main.css';
  * @return {*} 
  */
 function Main(props) {
-  console.log('main');
-  
+  const {routes, user, loader} = props;
     return (
       <main>
       {
-        props.loader
-        ? <Loader message={'Error loading'} />
+        loader
+        ? <Loader message={'loading...'} />
         : <Routes>
-            <Route path='*' element={<Home {...props} />} />
-            <Route path='/profile' element={<Profile user={props.user}/>} />
+            <Route path='*' element={<Home routes={routes} />} />
+            <Route path='/profile' element={<Profile user={user}/>} />
               {
                 // Creating all main routes
-                props.routes.map(item =>
+                routes && routes.map(item =>
                   <Route key={item.route} path={`${item.route}/*`}>
                   <Route path='*' element={
                     <Items

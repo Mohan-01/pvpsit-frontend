@@ -1,37 +1,38 @@
 import { useEffect, useState } from 'react';
-import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import Header from './components/Header';
 import Main from './components/Main';
 import Footer from './components/Footer';
 import './App.css';
 import './css/Form.css';
+import { getUser } from './utils/helpingFunctions';
 
 function App() {
   const [authorized, setAuthorized] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [loader, setLoader] = useState(false);
-  const [user, setUser] = useState({});
-  const url = `https://pvpsit-backend.onrender.com/users/login-status`;
-  // const url = `http://localhost:4000/users/login-status`;
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    // setLoader(true);
-    axios.get(url, {
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*'
-      },
-      withCredentials: true,
-    }).then(data => {
-      if(data.status !== 200) return ;
-      setLoggedIn(true);
-      setUser(data.data.data);
-      // setLoader(false);
-      if(user.role === 'admin' || user.role === 'staff') setAuthorized(true);
-    }).catch(err => {})
-  }, [url, user.role]);
+    const id = window.localStorage.getItem('userId');
+    (async function() {
+
+      if(id) {
+        const user = await getUser(id, {
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*'
+          },
+          withCredentials: true,
+        });
+        setUser(user);
+        setLoggedIn(true);
+        const {role} = user;
+        if(role === 'admin' || role ==='staff') setAuthorized(true);
+      }
+    })();
+  }, []);
 
   const routes = [
     {

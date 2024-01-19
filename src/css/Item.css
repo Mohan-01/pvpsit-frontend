@@ -4,22 +4,13 @@
     overflow-y: scroll;
     width: 100%;
     flex-direction: column;
-}
-
-.items div {
-    margin-bottom: 4em;
-}
-
-.main-heading {
-    text-align: center;
-}
-
-.items .notify {
-    display: flex;
+    margin: 0;
+    padding: 0;
     flex-direction: column;
+    gap: 1em;
+    padding-top: 3.4em;
 }
 
-.items .go-back {
-    position: absolute;
-    left: 2vw;
+.items > * {
+    flex: 1;
 }

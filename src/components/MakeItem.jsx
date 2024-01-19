@@ -2,24 +2,22 @@
 import React, { useState } from 'react'
 import {FaEdit, FaTrash} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
-import { handleDelete } from '../helpingFunctions';
+import { handleDelete } from '../utils/helpingFunctions';
 import '../css/MakeItem.css';
 
 const MakeItem = ({data, authorized, route}) => {
-    // const url = `http://localhost:4000${route}`;
-    const url = `https://pvpsit-backend.onrender.com${route}`;
     const [item, setItem] = useState(data);
-    const date = String(item?.lastDateToApply).split('T')[0];
+    const date = (new Date(item.lastDateToApply)).toLocaleDateString();
+    const time = (new Date(item.lastDateToApply)).toLocaleTimeString();
 
-    console.log('make item')
     return (
-        <React.Fragment>
+        <div className='make-item'>
         { item
-            ?
-                <div className='make-item'>
+            ?   <React.Fragment>
                     <div className='item-image'>
-                    <img src={item.coverImg || item.coverImg === route? item.coverImg: `/img${route}.png`} alt="item-img" />
+                        <img src={item.coverImg ||  `/img${route}.png`} alt="item-img" />
                     </div>
+                    <div className="box">
                     <table>
                         <tbody>
                             <tr>
@@ -36,31 +34,30 @@ const MakeItem = ({data, authorized, route}) => {
                                 </tr>
                                 <tr>
                                 <td>Last Date To Apply: </td>
-                                <td>{date}</td>
+                                <td>{date} {time}</td>
                             </tr>
                             {
                                 /*<tr>
                                 <td><Link to={`${item._id}`}>see more...</Link></td>
                                 </tr>*/
                             }
-                            <tr>
-                                <td className='apply-link' colSpan={2}><a href={item.link}>Apply here</a></td>
-                            </tr>
                             {
                                 authorized
                                 ?
                                 <tr className='card-update-delete'>
                                     <td><Link to={`${item._id}/update`}><FaEdit /></Link></td>
-                                    <td><Link onClick={() => handleDelete(url, item._id, setItem)}><FaTrash className='delete' /></Link></td>
+                                    <td><Link onClick={() => handleDelete(route, item._id, setItem)}><FaTrash className='delete' /></Link></td>
                                 </tr>
                                 : null
                             }
                         </tbody>
                     </table>
-                </div>
+                    <a href={item.link} className='apply-link'>Apply here</a>
+                    </div>
+            </React.Fragment>
             :null
         }
-        </React.Fragment>
+        </div>
     )
 }
 

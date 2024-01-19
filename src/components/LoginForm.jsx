@@ -1,11 +1,26 @@
 import React from 'react'
-import {handleLogin} from '../helpingFunctions';
+import {handleLogin} from '../utils/helpingFunctions';
 
-function LoginForm(props) {
+function LoginForm({setLoader, setUser, setAuthorized, setLoggedIn, navigate}) {
+
+    const hanldeSubmit = async (e) => {
+        try {
+            setLoader(true);
+            const user = await handleLogin(e);
+            setUser(user)
+            window.localStorage.setItem('userId', user._id);
+            if(user.role === 'admin' || user.role === 'staff') setAuthorized(true);
+            setLoggedIn(true);
+        } catch (err) {
+            console.log(err);
+        }
+        setLoader(false);
+        navigate('/');
+    }
     
     return (
-        <form onSubmit={e => handleLogin(e, props)}>
-        <button type='button' className='close-btn' onClick={() => props.navigate(-1)}>close</button>
+        <form onSubmit={hanldeSubmit}>
+        <button type='button' className='close-btn' onClick={() => navigate(-1)}>close</button>
             <label htmlFor="userName">User Name: </label>
             <input type="text" name="userName" id="userName" />
             <label htmlFor="password">Password: </label>

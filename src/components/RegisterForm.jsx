@@ -1,11 +1,20 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
-import { handleRegister } from '../helpingFunctions';
+import { handleRegister } from '../utils/helpingFunctions';
 
-const RegisterForm = (props) => {
+const RegisterForm = ({setLoader, navigate}) => {
+
+  const handleSubmit = async (e) => {
+    setLoader(true)
+    const user = await handleRegister(e, setLoader, navigate);
+    alert(`User Signup successfully: ${user.userName}`)
+    setLoader(false);
+    navigate('/')
+  }
   
   return (
-    <form onSubmit={e => handleRegister(e, props)}>
-        <button type='button' className='close-btn' onClick={() => props.navigate(-1)}>close</button>
+    <form onSubmit={handleSubmit}>
+        <button type='button' className='close-btn' onClick={() => navigate('/')}>close</button>
         <label htmlFor="userName">User Name: </label>
         <input type="text" name="userName" id="userName" required/>
         <label htmlFor="role">Role: </label>

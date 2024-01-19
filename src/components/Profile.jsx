@@ -3,7 +3,7 @@ import React from 'react'
 const Profile = ({user}) => {
   return (
     <React.Fragment>
-      <table>
+      {user && <table>
         <tbody>
         <tr>
           <td>Username: </td>
@@ -18,24 +18,24 @@ const Profile = ({user}) => {
           <tr>
             <td>Department: </td>
             <td>{user.department}</td>
-          </tr>:null
+          </tr>:'Not Defined'
         }
         {
           user.mail?
           <tr>
             <td>Email: </td>
             <td>{user.mail}</td>
-          </tr> : null
+          </tr> : 'Not Defined'
         }
         {
           user.phone?
           <tr>
             <td>Mobile: </td>
             <td>{user.phone}</td>
-          </tr>:null
+          </tr>: 'Not Defined'
         }
         </tbody>
-      </table>
+      </table>}
     </React.Fragment>
   )
 }

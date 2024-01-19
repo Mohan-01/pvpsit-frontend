@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
-import { handleDeleteAll } from '../helpingFunctions';
+import { handleDeleteAll } from '../utils/helpingFunctions';
 
 const DeleteForm = ({navigate}) => {
   

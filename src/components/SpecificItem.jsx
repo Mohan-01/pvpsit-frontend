@@ -1,45 +1,44 @@
 /* eslint-disable no-unused-vars */
-import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useParams, Link, Route, Routes } from 'react-router-dom';
-import {FaEdit, FaTrash} from 'react-icons/fa';
+import { FaEdit } from 'react-icons/fa';
 import AddNotify from './AddNotify';
-import { handleDelete } from '../helpingFunctions';
+import { getSpecificNotification } from '../utils/helpingFunctions';
 
-const SpecificItem = (props) => {
-    const url = `https://pvpsit-backend.onrender.com${props.route}`;
-    // const url = `http://localhost:4000${props.route}`;
+const SpecificItem = ({route, navigate, authorized, heading, setLoader}) => {
     const [data, setData] = useState(null);
     const {id} = useParams();
-    const {navigate} = props;
 
-    console.log('specific item')
 
 
     useEffect(() => {
-        // props.setLoader(true);
-        axios.get(`${url}/${id}`).then(res => {
-            if(res.status !== 200)  return navigate('/error')
-            setData(res.data.data);
-        })
-        // props.setLoader(false);
-    }, [url, id, navigate]);
+        setLoader(true);
+        (async function() {
+            try {
+                const data = await getSpecificNotification(route, id);
+                setData(data);
+            } catch (err) {
+                console.log(err);
+            }
+        })();
+        setLoader(false);
+    }, [route, id, setLoader]);
 
     return (
         <React.Fragment>
         <Routes>
-            <Route path='update' element={<AddNotify {...props} notShow = {true} updateURL = {`${url}/${id}`} />} />
+            <Route path='update' element={<AddNotify notShow = {true} heading={heading} navigate={navigate} setLoader={setLoader} id={id} update={true} />} />
         </Routes>
         {
             data
             ? (
                 <React.Fragment>
                 {
-                    props.authorized
+                    authorized
                     ?
                     <div className='card-update-delete'>
                         <Link to='update'><FaEdit /></Link>
-                        <Link onClick={() => handleDelete(url, id, setData)}><FaTrash style={{color: "red"}} /></Link>
+                        {/* <Link onClick={() => handleDelete(url, id, setData)}><FaTrash style={{color: "red"}} /></Link> */}
                     </div>
                     : null
                 }

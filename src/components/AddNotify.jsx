@@ -1,45 +1,33 @@
 import React, { useState } from 'react'
-import { createNotify, handleEdit } from '../helpingFunctions';
+import { createNotify, handleEdit } from '../utils/helpingFunctions';
 
-const AddNotify = ({notShow, ...props}) => {
-  console.log('add notification', props);
+const AddNotify = ({notShow, heading, navigate, setLoader, id, update}) => {
+  // heading, updateURL, navigate, setLoader
   const [showAll, setShowAll] = useState(notShow? notShow: false);
-  const [heading, setHeading] = useState(props.heading);
-  const [coverImg, setCoverImg] = useState(heading?`/${heading.toLowerCase()}`: 'internships');
+  const [thisHeading, thisHetHeading] = useState(heading);
 
-  props = {...props, showAll, heading, coverImg}
-
-  function convertToBase64(file) {
-    return new Promise((resolve, reject) => {
-      const fileReader = new FileReader();
-      fileReader.readAsDataURL(file);
-      fileReader.onload = () => {
-        setCoverImg(fileReader.result);
-        resolve(fileReader.result);
-      }
-      fileReader.onerror = error => reject(error);
-    })
-  }
-
-  const handleFileUpload = async e => {
-    const base64Image = await convertToBase64(e.target.files[0]);
-    // console.log(typeof base64Image, base64Image);
-    setCoverImg(base64Image);
+  const handleSubmit = async(e) => {
+    try {
+      setLoader(true);
+      if(!update) await createNotify(e, thisHeading);
+      else await handleEdit(e, id, thisHeading);
+      setLoader(false);
+      navigate(`/${thisHeading.toLowerCase()}`);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   return (
-    <form onSubmit={(e) => {
-      if(!props.updateURL) createNotify(e, coverImg, props);
-      else handleEdit(e, props.updateURL, props);
-    }} method='post'>
-        <button type='button' className='close-btn' onClick={() => props.navigate(-1)}>close</button>
+    <form onSubmit={handleSubmit} method='post'>
+        <button type='button' className='close-btn' onClick={() => navigate(-1)}>close</button>
         {
           !notShow?
           <React.Fragment>
-            <label htmlFor="heading">What you want to add</label>
-            <select name="heading" id="heading" defaultValue='select one' onChange={(e) => {
+            <label htmlFor="thisHeading">What you want to add</label>
+            <select name="thisHeading" id="thisHeading" defaultValue='select one' onChange={(e) => {
               setShowAll(true);
-              setHeading(e.target.value)
+              thisHetHeading(e.target.value)
             }}>
               <option value="select one" disabled>Select one</option>
               <option value="Internships">Internships</option>
@@ -51,7 +39,7 @@ const AddNotify = ({notShow, ...props}) => {
       { showAll
           ? 
           <React.Fragment>
-            <h2 className='form-heading'>{heading.toLocaleUpperCase()}</h2>
+            <h2 className='form-thisHeading'>{thisHeading.toLocaleUpperCase()}</h2>
             <label htmlFor="name">Name:</label>
             <input type="text" name="name" id="name" placeholder='Name'/>
             <label htmlFor="about">About:</label>
@@ -62,7 +50,7 @@ const AddNotify = ({notShow, ...props}) => {
             <input type="date" name="lastDateToApply" id="lastDateToApply" placeholder='Last Date'/>
             <label htmlFor="link">Apply Link: </label>
             <input type="url" name="link" id="link" placeholder='apply link' />
-            <input type="file" name="coverImg" id="coverImg" onChange={e => handleFileUpload(e)} accept='image/*' />
+            <input type="file" name="coverImg" id="coverImg" accept='image/*' />
             {/*<textarea name="description" id="description" cols="30" rows="10">
       </textarea>*/}
             <button type='submit' aria-label='Submit'>Submit</button>

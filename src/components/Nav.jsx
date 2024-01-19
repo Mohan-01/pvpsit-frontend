@@ -6,17 +6,18 @@ import LoginForm from './LoginForm';
 import RegisterForm from './RegisterForm';
 import AddNotify from './AddNotify';
 import DeleteForm from './DeleteForm';
-import { handleLogout } from '../helpingFunctions'
+import { handleLogout } from '../utils/helpingFunctions'
 import '../css/Nav.css';
 
-const Nav = (props) => {
+const Nav = ({loggedIn, notShow, heading, updateURL, authorized, setUser, user, setAuthorized, setLoggedIn, setLoader, navigate}) => {
+  //setLoader, navigate
   return (
     <nav>
       <Routes>
-        <Route path='/signup' element={<RegisterForm {...props}/>}></Route>
-        <Route path='/login' element={<LoginForm {...props}/>}></Route>
-        <Route path='/new-notification' element={<AddNotify {...props}/>} />
-        <Route path='/delete-all' element={<DeleteForm {...props}/>} />
+        <Route path='/signup' element={<RegisterForm setLoader={setLoader} navigate={navigate} />}></Route>
+        <Route path='/login' element={<LoginForm setLoader={setLoader} setUser={setUser} setAuthorized={setAuthorized} setLoggedIn={setLoggedIn} navigate={navigate} />}></Route>
+        <Route path='/new-notification' element={<AddNotify notShow={notShow} heading={heading} updateURL={updateURL} navigate={navigate} setLoader={setLoader}/>} />
+        <Route path='/delete-all' element={<DeleteForm navigate={navigate}/>} />
       </Routes>
       {
       
@@ -29,15 +30,17 @@ const Nav = (props) => {
       
     }
       <ul className='right'>
-        {props.loggedIn?<li><Link to='/profile' title='Profile'><p className='user-name'>{props.user.userName}<FaUser /></p></Link></li>:null}
-        {props.authorized? <li><Link to='/signup' title='Add User'><FaUserPlus /></Link></li>: null}
-        {!props.loggedIn?<li><Link to='/login' title='Login'><FiLogIn /></Link></li>:null}
-        {props.loggedIn?<li><Link onClick={() => handleLogout(props.setLoggedIn, props.setAuthorized)} title='Logout'><FiLogOut /></Link></li>:null}
-        {props.authorized? <li><Link to='/new-notification' title='Add New Notification'><FaPlus /></Link></li>: null}
-        {props.authorized? <li><Link to='/delete-all' title='Delete All Notification'><FaTrash /></Link></li>: null}
+        {loggedIn?<li><Link to='/profile' title='Profile'><p className='user-name'>{user.userName}<FaUser /></p></Link></li>:null}
+        {authorized? <li><Link to='/signup' title='Add User'><FaUserPlus /></Link></li>: null}
+        {!loggedIn?<li><Link to='/login' title='Login'><FiLogIn /></Link></li>:null}
+        {loggedIn?<li><Link onClick={() => handleLogout(setLoggedIn, setAuthorized)} title='Logout'><FiLogOut /></Link></li>:null}
+        {authorized? <li><Link to='/new-notification' title='Add New Notification'><FaPlus /></Link></li>: null}
+        {authorized? <li><Link to='/delete-all' title='Delete All Notification'><FaTrash /></Link></li>: null}
       </ul>
     </nav>
   )
 }
+
+// 
 
 export default Nav
