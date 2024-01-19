@@ -7,15 +7,17 @@ const AddNotify = ({notShow, heading, navigate, setLoader, id, update}) => {
   const [thisHeading, thisHetHeading] = useState(heading);
 
   const handleSubmit = async(e) => {
+    setLoader(true);
     try {
-      setLoader(true);
       if(!update) await createNotify(e, thisHeading);
       else await handleEdit(e, id, thisHeading);
-      setLoader(false);
       navigate(`/${thisHeading.toLowerCase()}`);
     } catch (err) {
+      navigate('/');
+      window.location.reload();
       console.log(err);
     }
+    setLoader(false);
   }
 
   return (

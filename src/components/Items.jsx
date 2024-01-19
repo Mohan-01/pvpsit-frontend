@@ -19,6 +19,8 @@ const Items = ({authorized, route, heading}) => {
                 setData(data);
                 setShowData(data);
             } catch (e) {
+                setData(null);
+                setShowData(null);
                 console.log(e);
             }
         })()

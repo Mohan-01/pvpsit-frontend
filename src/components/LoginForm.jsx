@@ -4,14 +4,17 @@ import {handleLogin} from '../utils/helpingFunctions';
 function LoginForm({setLoader, setUser, setAuthorized, setLoggedIn, navigate}) {
 
     const hanldeSubmit = async (e) => {
+        setLoader(true);
         try {
-            setLoader(true);
             const user = await handleLogin(e);
             setUser(user)
             window.localStorage.setItem('userId', user._id);
             if(user.role === 'admin' || user.role === 'staff') setAuthorized(true);
             setLoggedIn(true);
         } catch (err) {
+            setUser(false);
+            setAuthorized(false);
+            setLoggedIn(false);
             console.log(err);
         }
         setLoader(false);

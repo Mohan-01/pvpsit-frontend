@@ -14,7 +14,7 @@ const Nav = ({loggedIn, notShow, heading, updateURL, authorized, setUser, user, 
   return (
     <nav>
       <Routes>
-        <Route path='/signup' element={<RegisterForm setLoader={setLoader} navigate={navigate} />}></Route>
+        <Route path='/signup' element={<RegisterForm setLoader={setLoader} navigate={navigate} setUser={setUser} />}></Route>
         <Route path='/login' element={<LoginForm setLoader={setLoader} setUser={setUser} setAuthorized={setAuthorized} setLoggedIn={setLoggedIn} navigate={navigate} />}></Route>
         <Route path='/new-notification' element={<AddNotify notShow={notShow} heading={heading} updateURL={updateURL} navigate={navigate} setLoader={setLoader}/>} />
         <Route path='/delete-all' element={<DeleteForm navigate={navigate}/>} />

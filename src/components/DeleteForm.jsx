@@ -3,9 +3,18 @@ import React from 'react'
 import { handleDeleteAll } from '../utils/helpingFunctions';
 
 const DeleteForm = ({navigate}) => {
+
+  const handleSubmit = async e => {
+    try {
+      await handleDeleteAll(e, navigate);
+      navigate('/');
+    } catch (e) {
+      console.log(e);
+    }
+  }
   
   return (
-    <form onSubmit={e => handleDeleteAll(e, navigate)} method='post'>
+    <form onSubmit={handleSubmit} method='post'>
       <button type='button' className='close-btn' onClick={() => navigate(-1)}>close</button>
         <label htmlFor="name">Which one you want to delete</label>
         <select name="name" id="name" defaultValue={'internships'}>

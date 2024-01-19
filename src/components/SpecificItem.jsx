@@ -18,6 +18,7 @@ const SpecificItem = ({route, navigate, authorized, heading, setLoader}) => {
                 const data = await getSpecificNotification(route, id);
                 setData(data);
             } catch (err) {
+                setData(null);
                 console.log(err);
             }
         })();

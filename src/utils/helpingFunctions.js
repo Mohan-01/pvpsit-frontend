@@ -22,7 +22,9 @@ export async function handleRegister(e) {
       withCredentials: true,
     })
     return res.data;
-  } catch (e) {console.log(e)}
+  } catch (e) {
+    console.log(e);
+  }
 }
 
 export async function handleLogin (e) {
@@ -64,7 +66,11 @@ export function handleLogout(setLoggedIn, setAuthorized, navigate) {
       navigate('/');
     }).catch(err => console.log(err));
     // window.location.reload();
-  } catch (e) {console.log(e)}
+  } catch (e) {
+    setLoggedIn(false);
+    setAuthorized(false);
+    console.log(e)
+  }
 }
 
 export async function getUser(id) {
@@ -174,7 +180,7 @@ export async function handleEdit(e, id, heading) {
   } catch (e) {console.log(e)}
 }
 
-export async function handleDelete(route, id, setItem) {
+export async function handleDelete(route, id) {
   try {
     const ok = window.confirm('Are you sure you want to delete this item?');
     if(!ok) return ;

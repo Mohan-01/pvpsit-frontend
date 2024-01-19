@@ -2,14 +2,22 @@
 import React from 'react'
 import { handleRegister } from '../utils/helpingFunctions';
 
-const RegisterForm = ({setLoader, navigate}) => {
+const RegisterForm = ({setLoader, navigate, setUser}) => {
 
   const handleSubmit = async (e) => {
     setLoader(true)
-    const user = await handleRegister(e, setLoader, navigate);
-    alert(`User Signup successfully: ${user.userName}`)
-    setLoader(false);
+    try {
+      const user = await handleRegister(e, setLoader, navigate);
+      alert(`User Signup successfully: ${user.userName}`);
+      if(!window.localStorage.getItem('userId')) {
+        setUser(user);
+      }
+    } catch (err) {
+      console.log(err);
+    }
     navigate('/')
+    window.location.reload();
+    setLoader(false);
   }
   
   return (
