@@ -33,8 +33,8 @@ function Main(props) {
               {
                 // Creating all main routes
                 routes && routes.map(item =>
-                  <Route key={item.route} path={`${item.route}/*`}>
-                  <Route path='*' element={
+                  <Route key={item.route} path={`${item.route}`}>
+                  <Route index element={
                     <Items
                     route={item.route}
                     heading={item.heading}

@@ -45,7 +45,7 @@ export async function handleLogin (e) {
     } catch (e) {console.log(e)}
 }
 
-export function handleLogout(setLoggedIn, setAuthorized) {
+export function handleLogout(setLoggedIn, setAuthorized, navigate) {
   try {
   axios.get('/users/logout', {
     // axios.get('/users/logout', {
@@ -61,6 +61,7 @@ export function handleLogout(setLoggedIn, setAuthorized) {
       setLoggedIn(false);
       setAuthorized(false);
       window.localStorage.removeItem('userId');
+      navigate('/');
     }).catch(err => console.log(err));
     // window.location.reload();
   } catch (e) {console.log(e)}
