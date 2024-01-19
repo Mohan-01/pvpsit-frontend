@@ -18,20 +18,27 @@ function App() {
     (async function() {
 
       if(id) {
-        const user = await getUser(id, {
-          headers: {
-            'Accept': 'application/json',
+        try {
+
+          const user = await getUser(id, {
+            headers: {
+              'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Access-Control-Allow-Origin': '*'
           },
-          withCredentials: true,
-        });
-        setUser(user);
-        setLoggedIn(true);
-
-        const {role} = user;
-        if(role === 'admin' || role ==='staff') setAuthorized(true);
-      }
+            withCredentials: true,
+          });
+          setUser(user);
+          setLoggedIn(true);
+          
+          const {role} = user;
+          if(role === 'admin' || role ==='staff') setAuthorized(true);
+        } catch (e) {
+          console.log(e);
+          setUser(null);
+          setLoggedIn(false);
+        } 
+    }
     })();
   }, []);
 
