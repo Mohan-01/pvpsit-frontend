@@ -28,6 +28,7 @@ function App() {
           },
             withCredentials: true,
           });
+          if(!user) return ;
           setUser(user);
           setLoggedIn(true);
           
