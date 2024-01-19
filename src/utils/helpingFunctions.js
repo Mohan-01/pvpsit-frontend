@@ -94,7 +94,8 @@ export async function getNotifications(route) {
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
-        'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
+        // 'Access-Control-Allow-Origin': 'https://pvpsit.onrender.com',
+        'Access-Control-Allow-Origin': '*',
       }
     }
     );
